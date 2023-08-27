@@ -1,8 +1,6 @@
-import React from 'react';
-import {Text} from 'react-native';
+import * as React from 'react';
+import {Navigation} from './ui/Navigation';
 
-function App(): JSX.Element {
-  return <Text>Home</Text>;
+export default function App() {
+  return <Navigation />;
 }
-
-export default App;
