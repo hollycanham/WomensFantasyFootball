@@ -69,6 +69,7 @@ const TabBar = ({
       renderIcon={({route, focused, color}) => {
         const {options} = descriptors[route.key];
         if (options.tabBarIcon) {
+          console.log(options.tabBarIcon({focused, color, size: 24}));
           return options.tabBarIcon({focused, color, size: 24});
         }
 
@@ -89,8 +90,8 @@ const TabBar = ({
   );
 };
 
-// const Icon = (color: string, size: number) => {
-//   return <Icon size={size} color={color} />;
+// const HomeIcon = ({color, size}: {color: string; size: number}) => {
+//   return <Icon name="sports-soccer" size={size} color={color} />;
 // };
 
 const Tab = createBottomTabNavigator();
@@ -103,15 +104,38 @@ export default function App() {
           name="Team"
           component={TeamScreen}
           options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({color, size}) => {
-              return <Icon name="home" size={size} color={color} />;
-            },
+            tabBarLabel: 'Team',
+            // eslint-disable-next-line react/no-unstable-nested-components
+            tabBarIcon: props => <Icon name="soccer-field" {...props} />,
           }}
         />
-        <Tab.Screen name="Leagues" component={LeaguesScreen} />
-        <Tab.Screen name="Fixtures" component={FixturesScreen} />
-        <Tab.Screen name="Stats" component={StatsScreen} />
+        <Tab.Screen
+          name="Leagues"
+          component={LeaguesScreen}
+          options={{
+            tabBarLabel: 'Leagues',
+            // eslint-disable-next-line react/no-unstable-nested-components
+            tabBarIcon: props => <Icon name="trophy" {...props} />,
+          }}
+        />
+        <Tab.Screen
+          name="Fixtures"
+          component={FixturesScreen}
+          options={{
+            tabBarLabel: 'Fixtures',
+            // eslint-disable-next-line react/no-unstable-nested-components
+            tabBarIcon: props => <Icon name="calendar" {...props} />,
+          }}
+        />
+        <Tab.Screen
+          name="Stats"
+          component={StatsScreen}
+          options={{
+            tabBarLabel: 'Stats',
+            // eslint-disable-next-line react/no-unstable-nested-components
+            tabBarIcon: props => <Icon name="graph" {...props} />,
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
