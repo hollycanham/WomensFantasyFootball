@@ -39,7 +39,6 @@ const TabBar = ({
       renderIcon={({route, focused, color}) => {
         const {options} = descriptors[route.key];
         if (options.tabBarIcon) {
-          console.log(options.tabBarIcon({focused, color, size: 24}));
           return options.tabBarIcon({focused, color, size: 24});
         }
 
